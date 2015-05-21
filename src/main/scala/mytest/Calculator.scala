@@ -1,3 +1,5 @@
+package mytest
+
 class Calculator {
 
   def multiply(x:Int, y:Int):Int = x * y

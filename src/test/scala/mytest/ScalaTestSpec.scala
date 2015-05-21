@@ -1,3 +1,5 @@
+package mytest
+
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.exceptions.{TestCanceledException, TestFailedException}
 import org.scalatest.{FlatSpec, Matchers}
