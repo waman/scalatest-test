@@ -1,3 +1,5 @@
+package mytest
+
 import org.scalatest.FlatSpec
 
 class CalculatorSpec extends FlatSpec{
