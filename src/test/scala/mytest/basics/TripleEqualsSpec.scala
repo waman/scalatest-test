@@ -1,10 +1,11 @@
-package mytest
+package mytest.basics
 
+import mytest.Calculator
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.exceptions.{TestCanceledException, TestFailedException}
 import org.scalatest.{FlatSpec, Matchers}
 
-class ScalaTestSpec extends FlatSpec with Matchers with TypeCheckedTripleEquals{
+class TripleEqualsSpec extends FlatSpec with Matchers with TypeCheckedTripleEquals{
 
   "Calculator" should "multiplyで3と4の乗算結果が取得できる" in {
     val calc = new Calculator
@@ -28,15 +29,5 @@ class ScalaTestSpec extends FlatSpec with Matchers with TypeCheckedTripleEquals{
     val actual = calc.divide(3, 2)
     assert(actual == expected)
     //assert(actual === expected)  // コンパイル・エラー
-  }
-
-  "assert, assume" should "Boolean値を引数にとってfalseなら例外を投げる" in {
-    intercept[TestFailedException]{ assert(false) }
-    intercept[TestCanceledException]{ assume(false) }
-  }
-
-  "fail, cancel" should "引数をとらずに例外を投げる" in {
-    intercept[TestFailedException]{ fail() }
-    intercept[TestCanceledException]{ cancel() }
   }
 }
