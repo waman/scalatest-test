@@ -5,12 +5,12 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class BasicAssertionSpec extends FlatSpec with Matchers{
 
-  "assert, assume" should "Boolean’l‚ğˆø”‚É‚Æ‚Á‚Äfalse‚È‚ç—áŠO‚ğ“Š‚°‚é" in {
+  "assert, assume" should "Booleanå€¤ã‚’å¼•æ•°ã«ã¨ã£ã¦falseãªã‚‰ä¾‹å¤–ã‚’æŠ•ã’ã‚‹" in {
     intercept[TestFailedException]{ assert(false) }
     intercept[TestCanceledException]{ assume(false) }
   }
 
-  "fail, cancel" should "ˆø”‚ğ‚Æ‚ç‚¸‚É—áŠO‚ğ“Š‚°‚é" in {
+  "fail, cancel" should "å¼•æ•°ã‚’ã¨ã‚‰ãšã«ä¾‹å¤–ã‚’æŠ•ã’ã‚‹" in {
     intercept[TestFailedException]{ fail() }
     intercept[TestCanceledException]{ cancel() }
   }
