@@ -1,4 +1,4 @@
-package mytest
+package scalatest.tutorial
 
 class Calculator {
 
