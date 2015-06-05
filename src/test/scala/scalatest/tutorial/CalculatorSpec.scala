@@ -1,4 +1,4 @@
-package mytest
+package scalatest.tutorial
 
 import org.scalatest.FlatSpec
 

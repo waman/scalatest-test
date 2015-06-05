@@ -1,7 +1,8 @@
-package mytest.specs
+package scalatest.tutorial.specs
 
-import mytest.Calculator
 import org.scalatest.WordSpec
+
+import scalatest.tutorial.Calculator
 
 class CalculatorWordSpec extends WordSpec{
 
