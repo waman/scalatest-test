@@ -28,7 +28,7 @@ class CalculatorSpec extends FlatSpec{
 
   it should "divideで5と0のときIllegalArgumentExceptionを送出する" in {
     val calc = new Calculator
-    intercept[IllegalArgumentException]{
+    intercept[IllegalArgumentException] {
       calc.divide(5, 0)
     }
   }
