@@ -13,10 +13,9 @@ class CalculatorSpec extends FlatSpec{
 
   it should "multiplyで5と7の乗算結果が取得できる" in {
     val calc = new Calculator
-    //val expected = 12
-    val expected = 35
-    val actual = calc.multiply(5, 7)
-    assert(actual == expected)
+    assertResult(35) {
+      calc.multiply(5, 7)
+    }
   }
 
   it should "divideで3と2の除算結果が取得できる" in {
