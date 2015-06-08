@@ -1,20 +1,20 @@
-package mytest.specs
+package scalatest.tutorial.specs
 
-import mytest.Calculator
-import org.scalatest.Spec
+import scalatest.tutorial.Calculator
+import org.scalatest.FunSpec
 
-class CalculatorObjectSpec extends Spec{
+class CalculatorFunSpec extends FunSpec{
 
-  object `A Calculator` {
-    object `multiply method` {
-      def `3と4の乗算結果が取得できる ` {
+  describe("Calculator") {
+    describe("multiply") {
+      it("3と4の乗算結果が取得できる") {
         val calc = new Calculator
         val expected = 12
         val actual = calc.multiply(3, 4)
         assert(actual == expected)
       }
 
-      def `5と7の乗算結果が取得できる ` {
+      it("5と7の乗算結果が取得できる") {
         val calc = new Calculator
 //        val expected = 12
         val expected = 35
@@ -23,15 +23,15 @@ class CalculatorObjectSpec extends Spec{
       }
     }
 
-    object `divide method` {
-      def `3と2の除算結果が取得できる ` {
+    describe("divide") {
+      it("3と2の除算結果が取得できる") {
         val calc = new Calculator
         val expected = 1.5f
         val actual = calc.divide(3, 2)
         assert(actual == expected)
       }
 
-      def `5と0のときIllegalArgumentExceptionを送出する ` {
+      it("5と0のときIllegalArgumentExceptionを送出する") {
         val calc = new Calculator
         intercept[IllegalArgumentException] {
           calc.divide(5, 0)

@@ -1,6 +1,6 @@
-package mytest.specs
+package scalatest.tutorial.specs
 
-import mytest.Calculator
+import scalatest.tutorial.Calculator
 import org.scalatest.FunSuite
 
 class CalculatorFunSuite extends FunSuite{
