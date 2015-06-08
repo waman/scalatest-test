@@ -7,29 +7,22 @@ import scalatest.tutorial.Calculator
 class CalculatorFunSpec extends FunSpec{
 
   describe("Calculator") {
-    describe("multiply") {
+    describe("multiplyメソッド") {
       it("3と4の乗算結果が取得できる") {
         val calc = new Calculator
-        val expected = 12
-        val actual = calc.multiply(3, 4)
-        assert(actual == expected)
+        assert(calc.multiply(3, 4) == 12)
       }
 
       it("5と7の乗算結果が取得できる") {
         val calc = new Calculator
-//        val expected = 12
-        val expected = 35
-        val actual = calc.multiply(5, 7)
-        assert(actual == expected)
+        assert(calc.multiply(5, 7) == 35)
       }
     }
 
-    describe("divide") {
+    describe("divideメソッド") {
       it("3と2の除算結果が取得できる") {
         val calc = new Calculator
-        val expected = 1.5f
-        val actual = calc.divide(3, 2)
-        assert(actual == expected)
+        assert(calc.divide(3, 2) == 1.5f)
       }
 
       it("5と0のときIllegalArgumentExceptionを送出する") {
