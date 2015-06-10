@@ -9,10 +9,10 @@ class ListBufferSpec extends FlatSpec with GivenWhenThen{
     // SetUp
     Given("事前準備")
 //    val sut = mutable.ListBuffer.empty[String]
-//    note("ミュータブルだよ")
 //    sut += "Hello"
 //    sut += "World"
     val sut = mutable.ListBuffer("Hello", "World")
+    note("ミュータブルだよ")
 
     // Exercise
     When("実行")
