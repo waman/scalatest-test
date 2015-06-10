@@ -2,6 +2,7 @@ package scalatest.tutorial
 
 import org.scalatest.FlatSpec
 
+
 class CalculatorSpec extends FlatSpec{
 
   "Calculator" should "multiplyで3と4の乗算結果が取得できる" in {
