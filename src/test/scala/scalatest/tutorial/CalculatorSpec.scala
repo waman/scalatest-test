@@ -1,8 +1,8 @@
 package scalatest.tutorial
 
-import org.scalatest.FlatSpec
+import org.scalatest.{DiagrammedAssertions, FlatSpec}
 
-class CalculatorSpec extends FlatSpec{
+class CalculatorSpec extends FlatSpec with DiagrammedAssertions{
 
   "Calculator" should "multiplyで3と4の乗算結果が取得できる" in {
     val calc = new Calculator
