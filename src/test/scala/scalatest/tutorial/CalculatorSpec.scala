@@ -4,9 +4,7 @@ import org.scalatest.FlatSpec
 
 class CalculatorSpec extends FlatSpec{
 
-  behavior of "Calculator"
-
-  ignore should "multiplyで3と4の乗算結果が取得できる" in {
+  "Calculator" should "multiplyで3と4の乗算結果が取得できる" in {
     val sut = new Calculator
     val expected = 12
     val actual = sut.multiply(3, 4)
@@ -27,10 +25,9 @@ class CalculatorSpec extends FlatSpec{
     assert(actual == expected)
   }
 
-  it should "divideで5と0のときIllegalArgumentExceptionを送出する" in {
+  it should "divideで5と0のときIllegalArgumentExceptionを送出する" in
+      intercept[IllegalArgumentException] {
     val sut = new Calculator
-    intercept[IllegalArgumentException] {
-      sut.divide(5, 0)
-    }
+    sut.divide(5, 0)
   }
 }
