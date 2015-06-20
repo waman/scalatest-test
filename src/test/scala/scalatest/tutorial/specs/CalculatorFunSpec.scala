@@ -1,8 +1,9 @@
 package scalatest.tutorial.specs
 
 import scalatest.tutorial.Calculator
-import org.scalatest.FunSpec
+import org.scalatest.{DoNotDiscover, FunSpec}
 
+@DoNotDiscover
 class CalculatorFunSpec extends FunSpec{
 
   describe("Calculator") {

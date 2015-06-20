@@ -1,8 +1,9 @@
 package scalatest.tutorial.specs
 
 import scalatest.tutorial.Calculator
-import org.scalatest.WordSpec
+import org.scalatest.{DoNotDiscover, WordSpec}
 
+@DoNotDiscover
 class CalculatorWordSpec extends WordSpec{
 
   "Calculator" should {

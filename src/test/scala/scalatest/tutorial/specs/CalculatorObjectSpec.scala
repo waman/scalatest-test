@@ -1,8 +1,9 @@
 package scalatest.tutorial.specs
 
 import scalatest.tutorial.Calculator
-import org.scalatest.Spec
+import org.scalatest.{DoNotDiscover, Spec}
 
+@DoNotDiscover
 class CalculatorObjectSpec extends Spec{
 
   object `A Calculator` {

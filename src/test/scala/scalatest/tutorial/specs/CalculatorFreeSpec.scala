@@ -1,8 +1,9 @@
 package scalatest.tutorial.specs
 
 import scalatest.tutorial.Calculator
-import org.scalatest.FreeSpec
+import org.scalatest.{DoNotDiscover, FreeSpec}
 
+@DoNotDiscover
 class CalculatorFreeSpec extends FreeSpec{
 
   "Calculator" - {

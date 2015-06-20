@@ -1,8 +1,9 @@
 package scalatest.tutorial.specs
 
 import scalatest.tutorial.Calculator
-import org.scalatest.FunSuite
+import org.scalatest.{DoNotDiscover, FunSuite}
 
+@DoNotDiscover
 class CalculatorFunSuite extends FunSuite{
 
   test("Calculatorはmultiplyで3と4の乗算結果が取得できる"){

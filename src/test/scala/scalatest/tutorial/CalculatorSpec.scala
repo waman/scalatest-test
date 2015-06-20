@@ -4,7 +4,9 @@ import org.scalatest.FlatSpec
 
 class CalculatorSpec extends FlatSpec{
 
-  "Calculator" should "multiplyで3と4の乗算結果が取得できる" in {
+  behavior of "Calculator"
+
+  ignore should "multiplyで3と4の乗算結果が取得できる" in {
     val sut = new Calculator
     val expected = 12
     val actual = sut.multiply(3, 4)

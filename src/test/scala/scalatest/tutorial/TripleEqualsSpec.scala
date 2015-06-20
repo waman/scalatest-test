@@ -1,8 +1,9 @@
 package scalatest.tutorial
 
 import org.scalactic.TypeCheckedTripleEquals
-import org.scalatest.FlatSpec
+import org.scalatest.{DoNotDiscover, FlatSpec}
 
+@DoNotDiscover
 class TripleEqualsSpec extends FlatSpec with TypeCheckedTripleEquals{
 
   "==" should "Double値とFloat値を比較できる" in {
