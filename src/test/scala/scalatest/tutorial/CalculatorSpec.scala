@@ -25,9 +25,10 @@ class CalculatorSpec extends FlatSpec{
     assert(actual == expected)
   }
 
-  it should "divideで5と0のときIllegalArgumentExceptionを送出する" in
-      intercept[IllegalArgumentException] {
-    val sut = new Calculator
-    sut.divide(5, 0)
+  it should "divideで5と0のときIllegalArgumentExceptionを送出する" in {
+    intercept[IllegalArgumentException] {
+      val sut = new Calculator
+      sut.divide(5, 0)
+    }
   }
 }
