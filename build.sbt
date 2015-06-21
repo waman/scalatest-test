@@ -1,10 +1,15 @@
 name := "scalatest-test"
 
-version := "3.3"
+version := "4.3"
 
 scalaVersion := "2.11.6"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
+libraryDependencies ++= Seq(
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
+  "junit" % "junit" % "4.12" % "test",
+  "org.hamcrest" % "hamcrest-library" % "1.3" % "test"
+)
+
 
 //***** Compile Options *****
 javacOptions ++= Seq(
@@ -14,7 +19,10 @@ javacOptions ++= Seq(
 )
 
 scalacOptions ++= Seq(
+  "-Xlint",
   "-deprecation",
+  "-unchecked",
+  "-feature",
   "-encoding", "UTF-8"
 )
 
