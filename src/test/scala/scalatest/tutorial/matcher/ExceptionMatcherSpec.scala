@@ -6,8 +6,6 @@ class ExceptionMatcherSpec extends FlatSpec with Matchers{
 
   "an [] should be thrownBy" should "例外が投げられる" in {
     an[ArithmeticException] should be thrownBy 1 / 0
-
-    an[ArithmeticException].should(be).thrownBy{ 1 / 0 }
   }
 
   "the [] thrownBy" should "投げられた例外を取得できる" in {

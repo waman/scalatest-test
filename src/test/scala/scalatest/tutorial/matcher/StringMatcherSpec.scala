@@ -11,11 +11,6 @@ class StringMatcherSpec extends FlatSpec with Matchers{
     string should startWith regex "Hel*o"
     string should startWith regex ("(.*)," withGroup "Hello")
     string should startWith regex ("(.*), (.*) " withGroups ("Hello", "ScalaTest"))
-
-    convertToAnyShouldWrapper(string).should(startWith.apply("Hello"))
-    convertToAnyShouldWrapper(string).should(startWith).regex("Hel*o")
-    convertToAnyShouldWrapper(string).should(startWith).regex(
-      convertToStringShouldWrapper("(.*),").withGroup("Hello"))
   }
 
   "include" should "指定した文字列を含む" in {

@@ -27,12 +27,6 @@ class JavaBeansMatcherSpec extends FlatSpec with Matchers with Inside{
       'age  (100),
       'sex  ("male")
     )
-
-    convertToAnyShouldWrapper(me).should(have.apply(
-      'name.apply("waman"),
-      'age.apply(100),
-      'sex.apply("male")
-    ))
   }
 
   "inside" should "パターンマッチで抽出したものを検証する" in {

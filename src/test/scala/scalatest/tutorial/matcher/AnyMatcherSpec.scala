@@ -16,9 +16,6 @@ class AnyMatcherSpec extends FlatSpec with Matchers{
 
     "ScalaTest" shouldBe "ScalaTest"
     "ScalaTest" shouldEqual "ScalaTest"
-
-    convertToAnyShouldWrapper("ScalaTest").should(be.apply("ScalaTest"))
-    convertToAnyShouldWrapper("ScalaTest").should(equal("ScalaTest"))
   }
 
   // Java : ==
@@ -40,9 +37,6 @@ class AnyMatcherSpec extends FlatSpec with Matchers{
     actual shouldBe null
 
     "null" should not be null
-
-    convertToAnyShouldWrapper(actual).should(be.apply(null))
-    convertToAnyShouldWrapper("null").should(not).be(null)
   }
 
   // Java : instanceof
