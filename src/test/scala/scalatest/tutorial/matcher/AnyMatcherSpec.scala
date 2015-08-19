@@ -6,37 +6,52 @@ import org.scalatest.{Matchers, FlatSpec}
 
 class AnyMatcherSpec extends FlatSpec with Matchers{
 
-  // Java の equals, JUnit の is, Scala の Any.==
-  "equal" should "等価なオブジェクトまたは値であることを検証する" in {
-    Array(1, 2) should equal (Array(1, 2))
-    Array(1, 2) should === (Array(1, 2))
-    Array(1, 2) should be (Array(1, 2))
+  // Java : equals
+  // JUnit : is
+  // Scala : Any.==
+  "equal" should "等価なオブジェクトまたは値である" in {
+    "ScalaTest" should be ("ScalaTest")
+    "ScalaTest" should equal ("ScalaTest")
+    "ScalaTest" should === ("ScalaTest")
 
-    Array(1, 2) shouldEqual Array(1, 2)
-    Array(1, 2) shouldBe Array(1, 2)
+    "ScalaTest" shouldBe "ScalaTest"
+    "ScalaTest" shouldEqual "ScalaTest"
+
+    convertToAnyShouldWrapper("ScalaTest").should(be.apply("ScalaTest"))
+    convertToAnyShouldWrapper("ScalaTest").should(equal("ScalaTest"))
   }
 
-  // Java の ==, JUnit の sameInstance, Scala の AnyRef.eq
-  "theSameInstanceAs" should "同一のインスタンスであることを検証する" in {
-    val array = Array(1, 2)
-    array should be theSameInstanceAs (array)  // ()なしでもOK
+  // Java : ==
+  // JUnit : sameInstance
+  // Scala : AnyRef.eq
+  "theSameInstanceAs" should "同一のインスタンスである" in {
+    val s = "ScalaTest"
+    val t = s
+    s should be theSameInstanceAs t
+    s shouldBe theSameInstanceAs (t)
 
-    Array(1, 2) should not be theSameInstanceAs (Array(1, 2))
+    "ScalaTest" should not be theSameInstanceAs (new String("ScalaTest"))
   }
 
   // null チェック
-  "be (null) / not be (null)" should "null値であることを検証する" in {
+  "be (null) / not be (null)" should "null値である" in {
     val actual:String = null
     actual should be (null)
+    actual shouldBe null
 
-    "null" should not be (null)  // ()なしでもOK
+    "null" should not be null
+
+    convertToAnyShouldWrapper(actual).should(be.apply(null))
+    convertToAnyShouldWrapper("null").should(not).be(null)
   }
 
-  // Java の instanceof, JUnit の instanceOf, Scala の isInstanceOf
-  "be a" should "あるクラスのインスタンスであることを検証する" in {
-    Array(1, 2) should be (a [Serializable])
-    Array(1, 2) shouldBe a [Serializable]
+  // Java : instanceof
+  // JUnit : instanceOf
+  // Scala : isInstanceOf
+  "be a" should "指定したクラスのインスタンスである" in {
+    "ScalaTest" should be (a [Serializable])
+    "ScalaTest" shouldBe a [Serializable]
 
-    Array(1, 2) should not be a [List[_]]
+    "ScalaTest" should not be a [List[_]]
   }
 }
