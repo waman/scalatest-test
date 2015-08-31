@@ -4,7 +4,6 @@ import java.io.Serializable
 
 import org.scalatest.{Matchers, FlatSpec}
 
-
 class AnyMatcherSpec extends FlatSpec with Matchers{
 
   // Java : equals

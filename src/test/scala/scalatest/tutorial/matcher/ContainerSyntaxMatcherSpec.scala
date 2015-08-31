@@ -12,6 +12,19 @@ class ContainerSyntaxMatcherSpec extends FlatSpec with Matchers{
     a [TestFailedException] should be thrownBy{ None.value }
   }
 
+  "defined" should "定義されている" in {
+    Some(1) should be (defined)
+    None should not be defined
+  }
+
+  "definedAt" should "指定した値で定義されている" in {
+    List(1, 2) should be definedAt 1
+    List(1, 2) should not be definedAt (3)
+
+    val pf:PartialFunction[Int,Int] = { case 1 => 1 }
+    pf should be definedAt 1
+  }
+
   "loneElement" should "コレクションの唯一の値を取り出して検証を行う" in {
     import org.scalatest.LoneElement._
 

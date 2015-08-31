@@ -9,7 +9,7 @@ class InspectorMatcherSpec extends FlatSpec with Matchers{
     all(list) should be > 0
     all(list) shouldNot be > 10
 //    all(list) should be <= 10 と同じ
-    all(list) should be > 6  // 失敗する
+//    all(list) should be > 6  // 失敗する
   }
 
   "every" should "allと同じ（ただし失敗時にすべての要素を列挙する）" in {
@@ -18,6 +18,13 @@ class InspectorMatcherSpec extends FlatSpec with Matchers{
     every(list) shouldNot be > 10
     //    every(list) should be <= 10 と同じ
     //    every(list) should be > 6  // 失敗する
+  }
+
+  "no" should "すべての要素が条件を満たさない" in {
+    val list = List(1, 3, 5, 7, 9)
+    no(list) should be < 0
+    no(list) shouldNot be > 0
+//    no(list) should be <= 0  と同じ
   }
 
   "exactly" should "指定された個数の要素だけ条件を満たす" in {
