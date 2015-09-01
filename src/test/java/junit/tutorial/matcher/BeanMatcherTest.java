@@ -4,8 +4,7 @@ package junit.tutorial.matcher;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
-import static org.waman.junitutil.matchers.BeanMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 public class BeanMatcherTest {
 

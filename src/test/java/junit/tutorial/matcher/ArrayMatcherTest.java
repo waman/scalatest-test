@@ -3,9 +3,7 @@ package junit.tutorial.matcher;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
-import static org.waman.junitutil.matchers.ArrayMatchers.*;
-import static org.waman.junitutil.matchers.NumberMatchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 public class ArrayMatcherTest {
 

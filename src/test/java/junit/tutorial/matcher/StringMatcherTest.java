@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
-import static org.waman.junitutil.matchers.StringMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 public class StringMatcherTest {
 

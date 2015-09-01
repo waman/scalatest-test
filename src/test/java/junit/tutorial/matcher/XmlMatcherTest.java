@@ -9,9 +9,7 @@ import org.xml.sax.InputSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.waman.junitutil.matchers.XmlMatchers.*;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class XmlMatcherTest {

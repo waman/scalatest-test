@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
-import static org.waman.junitutil.matchers.NumberMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 public class NumberMatcherTest {
 

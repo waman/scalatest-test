@@ -6,10 +6,8 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-
-import static org.waman.junitutil.matchers.MapMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 public class MapMatcherTest {
 

@@ -9,9 +9,7 @@ import java.util.*;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
-import static org.waman.junitutil.matchers.CollectionMatchers.*;
-import static org.waman.junitutil.matchers.NumberMatchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 public class CollectionMatcherTest {
 
