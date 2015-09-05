@@ -2,7 +2,7 @@ package scalatest.tutorial.matcher
 
 import org.scalatest.{Matchers, FlatSpec}
 
-class StringMatcherSpec extends FlatSpec with Matchers{
+class StringRegexMatcherSpec extends FlatSpec with Matchers{
 
   "startWith" should "指定した文字列で始まる" in {
     val string = "Hello, ScalaTest world!"
@@ -35,4 +35,5 @@ class StringMatcherSpec extends FlatSpec with Matchers{
     string should fullyMatch regex "Hello, .* world!"
     string should fullyMatch regex ("(.*), (.*) (.*)!" withGroups("Hello", "ScalaTest", "world"))
   }
+
 }
