@@ -2,21 +2,9 @@ package scalatest.tutorial.matcher.custom
 
 import java.nio.file.{Files, Paths}
 
-import org.scalatest.exceptions.TestFailedException
 import org.scalatest.{FlatSpec, Matchers}
 
-class PathEnablerSpec extends FlatSpec with Matchers with CustomMatchers{
-
-  "Matcher" should "カスタムマッチャーを作る" in {
-    val path = Paths.get("/path/to/some/zip/file.zip")
-    path should endWithExtension("zip")
-
-    val ex1 = the [TestFailedException] thrownBy { path should endWithExtension("txt") }
-    ex1.getMessage should include ("ファイル file.zip の拡張子が txt ではありません。")
-
-    val ex2 = the [TestFailedException] thrownBy { path shouldNot endWithExtension("zip") }
-    ex2.getMessage should include ("ファイル file.zip の拡張子が zip です。")
-  }
+class PathEnablerSpec extends FlatSpec with Matchers with PathMatchers{
 
   "Existence" should "existで検証を行う" in {
     val path = Files.createTempFile(null, null)

@@ -100,7 +100,7 @@ class DateMatcherSpec extends FlatSpec with Matchers{
 
   "be dateOf" should "BeMatcherで指定された日付であることを検証する" in {
 
-    def dateOf(month:Month, day:Int) = new BeMatcher[TemporalAccessor] {
+    def dateOf(month: Month, day: Int) = new BeMatcher[TemporalAccessor] {
 
       override def apply(left: TemporalAccessor): MatchResult = {
         val monthDay = MonthDay.from(left)
