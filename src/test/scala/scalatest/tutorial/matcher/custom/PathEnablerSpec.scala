@@ -4,6 +4,8 @@ import java.nio.file.{Files, Paths}
 
 import org.scalatest.{FlatSpec, Matchers}
 
+//import scalatest.tutorial.matcher.custom.PathMatchers._
+
 class PathEnablerSpec extends FlatSpec with Matchers with PathMatchers{
 
   "Existence" should "existで検証を行う" in {
