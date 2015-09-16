@@ -2,8 +2,10 @@ package scalatest.tutorial.matcher.custom
 
 import java.time.Month._
 import java.time._
+import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAccessor
 
+import org.scalatest.exceptions.TestFailedException
 import org.scalatest.matchers.Matcher
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -16,9 +18,8 @@ class ComposeMatcherSpec extends FlatSpec with Matchers{
   val dtGreenwich0 = ZonedDateTime.parse("2015-09-01T00:00Z[Greenwich]")
   val dtTokyo0     = ZonedDateTime.parse("2015-09-01T00:00+09:00[Asia/Tokyo]")
   val dtTokyo9     = ZonedDateTime.parse("2015-09-01T09:00+09:00[Asia/Tokyo]")
-  val dt0offset9   = OffsetDateTime.parse("2015-09-01T00:00+09:00")
 
-  "method definition" should "マッチャーを定義する" in {
+  "not/and/or" should "既存のMatcherを組み合わせて新たにMatcher定義する" in {
     val beInOphiuchusMonthDayPeriod = be >= MonthDay.of(NOVEMBER, 29) and be < MonthDay.of(DECEMBER, 18)
 
     birthday should beInOphiuchusMonthDayPeriod
@@ -55,7 +56,30 @@ class ComposeMatcherSpec extends FlatSpec with Matchers{
     birthTime should h(DECEMBER, 11)
     birthTime should (f(DECEMBER, 11) compose g)
     g(birthTime) should f(DECEMBER, 11)
+  }
+  
+  val monthDayFormat = DateTimeFormatter.ofPattern("M/d")
 
+  def formatDate(a: Any) = {
+    val temporal = a.asInstanceOf[TemporalAccessor]
+    MonthDay.from(temporal).format(monthDayFormat)
+  }
+
+  it should "mapResultで詳細なメッセージを構築する" in {
+    val f = be >= MonthDay.of(NOVEMBER, 29) and be < MonthDay.of(DECEMBER, 18)
+    val g = MonthDay from _
+
+    val beOphiuchus = f compose g mapResult { mr =>
+      mr.copy(
+        failureMessageArgs =
+          mr.failureMessageArgs map formatDate,
+        negatedFailureMessageArgs =
+          mr.negatedFailureMessageArgs map formatDate
+      )
+    }
+
+    val ex = the [TestFailedException] thrownBy { now should beOphiuchus }
+    ex should have message "\"9/1\" was not greater than or equal to \"11/29\""
   }
 
   "2回のcompose" should "SUTにも期待値にも変換を施した後、検証を行う" in {
@@ -85,18 +109,43 @@ class ComposeMatcherSpec extends FlatSpec with Matchers{
     val beTheSameInstantAs = (f compose g) andThen (_ compose h)
       // val beTheSameInstantAs = (f compose g) andThen ((_:Matcher[Instant]) compose h)
 
-    dtTokyo0 should beTheSameInstantAs (dt0offset9)
-    dtTokyo0 should ((f compose g) andThen (_ compose h))(dt0offset9)
-    h(dtTokyo0) should f(g(dt0offset9))
+    val dtOffset = OffsetDateTime.parse("2015-09-01T00:00+09:00")
+
+    dtTokyo0 should beTheSameInstantAs (dtOffset)
+    dtTokyo0 should ((f compose g) andThen (_ compose h))(dtOffset)
+    h(dtTokyo0) should f(g(dtOffset))
 
     // 型を明示して段階を踏んだ構築
     val fg: OffsetDateTime => Matcher[Instant] = f compose g
     val _h: Matcher[Instant] => Matcher[ZonedDateTime] = (_:Matcher[Instant]) compose h
     val beTheSameInstantAs_ : OffsetDateTime => Matcher[ZonedDateTime] = fg andThen _h
-    dtTokyo0 should beTheSameInstantAs_ (dt0offset9)
+    dtTokyo0 should beTheSameInstantAs_ (dtOffset)
 
     // compose だけで書くとこんな感じ（関数として定義）
     def beTheSameInstantAs__(odt: OffsetDateTime) = (f compose g)(odt) compose h
-    dtTokyo0 should beTheSameInstantAs__ (dt0offset9)
+    dtTokyo0 should beTheSameInstantAs__ (dtOffset)
+  }
+
+  it should "mapResultで詳細なメッセージを構築する" in {
+    val f = be (_:Instant)
+    val g = (_:ZonedDateTime).toInstant
+    val beTheSameInstantAs1 = (f compose g) andThen (_ compose g)
+
+    val ex1 = the [TestFailedException] thrownBy { dtGreenwich0 should beTheSameInstantAs1 (dtTokyo0) }
+    ex1 should have message "2015-09-01T00:00:00Z was not equal to 2015-08-31T15:00:00Z"
+
+    import org.scalatest.matchers.LazyArg
+    import org.scalatest.matchers.MatcherProducers._
+    val beTheSameInstantAs2 = (f compose g) andThen (_ compose g) mapResult { mr =>
+      mr.copy(
+        failureMessageArgs =
+          mr.failureMessageArgs map (LazyArg(_){ "[" + _.toString + "].toInstant" }),
+        negatedFailureMessageArgs =
+          mr.negatedFailureMessageArgs map (LazyArg(_){ "["+_.toString+"].toInstant" })
+      )
+    }
+
+    val ex2 = the [TestFailedException] thrownBy { dtGreenwich0 should beTheSameInstantAs2 (dtTokyo0) }
+    ex2 should have message "[2015-09-01T00:00:00Z].toInstant was not equal to [2015-08-31T15:00:00Z].toInstant"
   }
 }
